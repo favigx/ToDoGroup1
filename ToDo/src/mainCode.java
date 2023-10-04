@@ -1,3 +1,4 @@
+import javax.swing.Box;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,6 +14,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+
 
 public class mainCode {
     
@@ -46,9 +48,13 @@ public class mainCode {
             createTask(frame2.inputTask.getText());
         });
         
-        markCompletedBtn.addActionListener(e ->{
+        markCompletedBtn.addActionListener(e -> {
+            
             markedAsDone();
+        
         });
+    
+        
         
         deleteBtn.addActionListener(e ->{
             deleteTask();
@@ -101,7 +107,9 @@ public class mainCode {
         
         markCompletedBtn.setPreferredSize(new Dimension(200,50));
         panel2.add(markCompletedBtn, BorderLayout. WEST);
-        
+
+        panel2.add(Box.createHorizontalStrut(50));
+
         deleteBtn.setPreferredSize(new Dimension(200,50));
         panel2.add(deleteBtn, BorderLayout.EAST);
         
@@ -139,10 +147,10 @@ public class mainCode {
     public void markedAsDone(){
 
         int index = jList.getSelectedIndex();
-        if (index >= 0){
-            //jList.setSelectionBackground(Color.GREEN);
-
-            completeTask();
+        if((index >= 0)){
+            jList.setSelectionBackground(Color.GREEN);
+            
+            //completeTask();
         }
     }
     
