@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 public class mainCode {
     
     secondFrame frame2 = new secondFrame();
-
+    //Eriks branch
     JFrame mainFrame = new JFrame("To-Do organizer");
     JPanel mainPanel = new JPanel();
     JLabel viewToDoHeader = new JLabel("Todays to-do");
