@@ -12,4 +12,5 @@ public class secondFrame {
     JTextField inputTime = new JTextField();
     JLabel taskLabel = new JLabel("Task");
     JLabel timeLabel= new JLabel("Time");
+    JLabel timeExample = new JLabel ("Example: 16:50");
 }

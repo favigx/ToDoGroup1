@@ -3,11 +3,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -17,8 +19,8 @@ import java.text.SimpleDateFormat;
 public class mainCode {
     
     secondFrame frame2 = new secondFrame();
-
     JFrame mainFrame = new JFrame("To-Do organizer");
+    JFrame popUpFrame = new JFrame("ERROR");
     JPanel mainPanel = new JPanel();
     JLabel viewToDoHeader = new JLabel("Todays to-do");
     JLabel viewActiveTasks = new JLabel();
@@ -118,16 +120,20 @@ public class mainCode {
         frame2.secondPanel.setLayout(new GridLayout(3, 1));
         frame2.secondPanel.setBackground(Color.getHSBColor( 10,1000,700));
     
+        
         frame2.secondPanel.add(frame2.taskLabel);
         frame2.secondPanel.add(frame2.inputTask);
         frame2.secondPanel.add(frame2.timeLabel);
         frame2.secondPanel.add(frame2.inputTime);
         frame2.secondPanel.add(frame2.addTaskBtn);
+        frame2.secondPanel.add(frame2.timeExample);
 
         frame2.taskLabel.setFont(new Font("Georgia", Font.PLAIN, 17));
         frame2.taskLabel.setForeground(Color.WHITE);
         frame2.timeLabel.setFont(new Font("Georgia", Font.PLAIN, 17));
         frame2.timeLabel.setForeground(Color.WHITE);
+        frame2.timeExample.setFont(new Font("Georgia", Font.PLAIN, 17 ));
+        frame2.timeExample.setForeground((Color.WHITE));
         
         frame2.secondFrame.setSize(500,150);
         frame2.secondFrame.setResizable(false);
@@ -155,18 +161,18 @@ public class mainCode {
         }
     }
 
-    public void addTask(String insert, String insertkl){
-
-        if(insert.isBlank()){
-        
-        }
-        else{
-        listModel.addElement(" " + insertkl + "  -  " + insert);
-
-        frame2.inputTask.setText("");
-        frame2.inputTime.setText(""); 
-        
-        frame2.secondFrame.setVisible(false);
+    public void addTask(String insert, String insertkl) {
+        if (insert.isBlank() || insertkl.isBlank()) {
+            JOptionPane.showMessageDialog(popUpFrame, "You are trying to add a task with one of the text fields empty. Try again.", "ERROR!", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            if (!insertkl.matches("[0-9:]+")) {
+                JOptionPane.showMessageDialog(popUpFrame, "Please write a correct time input like shown in the example.", "ERROR!", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                listModel.addElement(" " + insertkl + "  -  " + insert);
+                frame2.inputTask.setText("");
+                frame2.inputTime.setText("");
+                frame2.secondFrame.setVisible(false);
+            }
         }
     }
 
