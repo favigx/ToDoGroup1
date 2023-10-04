@@ -1,3 +1,4 @@
+import javax.swing.Box;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,7 +30,7 @@ public class mainCode {
     SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM-yy  |  HH:mm");
     String datePattern = dFormat.format(date);
     JLabel viewDate = new JLabel("" + datePattern);
-    JButton createTaskBtn = new JButton("+");
+    JButton createTaskBtn = new JButton("New Task");
     JButton markCompletedBtn = new JButton("Mark as completed");
     JButton deleteBtn = new JButton("Delete task");
     DefaultListModel<String> listModel = new DefaultListModel<>();
@@ -39,6 +40,13 @@ public class mainCode {
     JPanel panel1 = new JPanel();
     JPanel panel2 = new JPanel();
     JPanel panel3 = new JPanel();
+    JPanel panel4 = new JPanel();
+    JPanel panel5 = new JPanel();
+    JPanel panel6 = new JPanel();
+    JPanel panel7 = new JPanel();
+    JPanel panel8 = new JPanel();
+    JPanel panel9 = new JPanel();
+
 
     public mainCode(){
       
@@ -65,45 +73,94 @@ public class mainCode {
         jList.setFixedCellWidth(100);
         jList.setBorder(new EmptyBorder(10,10, 10, 10));
         //jList.setBackground(Color.getHSBColor( 300,350,700));
-       
+
+        panel1.setLayout(new BorderLayout(20,20));
+
         panel1.setBackground(Color.getHSBColor( 10,1000,700));
         panel1.setPreferredSize(new Dimension(600, 100));
+        //panel1.add(Box.createHorizontalStrut(100));
         mainFrame.add(panel1,BorderLayout.NORTH);
+       
+        // panel1.setBackground(Color.getHSBColor( 10,1000,700));
+        // panel1.setPreferredSize(new Dimension(600, 100));
+        // mainFrame.add(panel1,BorderLayout.NORTH);
 
         panel2.setBackground(Color.getHSBColor( 10,1000,700));
-        panel2.setPreferredSize(new Dimension(600, 100));
+        panel2.setPreferredSize(new Dimension(600, 60));
         mainFrame.add(panel2,BorderLayout.SOUTH);
+        //panel1.add(Box.createVerticalStrut(100));
+        
+        // //panel2.add(Box.createVerticalStrut(40));
 
-        panel3.setBackground(Color.getHSBColor( 10,1000,700));
-        panel3.setPreferredSize(new Dimension(100, 115));
-        panel1.add(panel3, BorderLayout.WEST);
+        //panel3.setLayout(new BorderLayout());
+        panel3.setBackground(Color.magenta);
+        panel3.setPreferredSize(new Dimension(0, 0));
+        //panel1.add(panel3, BorderLayout.SOUTH);
+
+        panel5.setBackground(Color.black);
+        //panel5.setPreferredSize(new Dimension(10, 35));
+        panel1.add(panel5, BorderLayout.NORTH);
+
+        panel6.setBackground(Color.orange);
+        panel6.setPreferredSize(new Dimension(50, 35));
+        panel1.add(panel6, BorderLayout.WEST);
+
+        panel7.setBackground(Color.GREEN);
+        panel7.setPreferredSize(new Dimension(50, 35));
+        panel1.add(panel7, BorderLayout.EAST);
+
+        panel8.setBackground(Color.BLUE);
+        panel8.setPreferredSize(new Dimension(50, 100));
+        panel1.add(panel8, BorderLayout.CENTER);
+        // //panel3.setBackground(Color.getHSBColor( 10,1000,700));
+        // panel4.setBackground(Color.RED);
+        // panel4.setPreferredSize(new Dimension(300, 50));
+        // //panel1.add(panel4, BorderLayout.SOUTH);
 
         scrollPane.setPreferredSize(new Dimension(600, 600));
         mainFrame.add(scrollPane, BorderLayout.WEST);
+        
+        //panel1.add(Box.createVerticalStrut(100));
+        //panel1.add(Box.createHorizontalStrut(100));
 
+        panel3.add(Box.createHorizontalStrut(100));
         viewToDoHeader.setFont(new Font("Georgia", Font.PLAIN, 20));
         viewToDoHeader.setPreferredSize(new Dimension(200, 150));
         viewToDoHeader.setForeground(Color.WHITE);
-        panel1.add(viewToDoHeader, BorderLayout.WEST);
+        //panel3.add(viewToDoHeader, BorderLayout.WEST);
+        //panel1.add(Box.createHorizontalStrut(100));
 
         viewDate.setForeground(Color.WHITE);
         viewDate.setFont(new Font("Georgia", Font.PLAIN, 15));
         viewDate.setPreferredSize(new Dimension(125, 150));
-        panel1.add(viewDate, BorderLayout.SOUTH);
+        //panel3.add(viewDate, BorderLayout.EAST);
 
-        viewCompleted.setForeground(Color.WHITE);
-        viewCompleted.setFont(new Font("Georgia", Font.PLAIN, 10));
-        viewCompleted.setPreferredSize(new Dimension(100, 50));
-        panel1.add(viewCompleted, BorderLayout.EAST);
+        // viewCompleted.setForeground(Color.WHITE);
+        // viewCompleted.setFont(new Font("Georgia", Font.PLAIN, 10));
+        // viewCompleted.setPreferredSize(new Dimension(100, 50));
+        // panel1.add(viewCompleted, BorderLayout.EAST);
 
-        createTaskBtn.setPreferredSize(new Dimension(41,41));
-        panel3.add(createTaskBtn, BorderLayout.EAST);
         
-        markCompletedBtn.setPreferredSize(new Dimension(200,50));
+        // createTaskBtn.setPreferredSize(new Dimension(90,30));
+        // panel3.add(createTaskBtn, BorderLayout.SOUTH);
+        // //panel3.add(Box.createVerticalStrut(40));
+        
+
+        
+        
+        
+        markCompletedBtn.setPreferredSize(new Dimension(145,50));
         panel2.add(markCompletedBtn, BorderLayout. WEST);
+
         
-        deleteBtn.setPreferredSize(new Dimension(200,50));
+        panel2.add(Box.createHorizontalStrut(40));
+        
+        
+        
+        deleteBtn.setPreferredSize(new Dimension(145,50));
         panel2.add(deleteBtn, BorderLayout.EAST);
+
+        
         
         mainFrame.setSize(600,800);
         mainFrame.setResizable(false);
