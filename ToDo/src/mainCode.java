@@ -146,6 +146,8 @@ public class mainCode {
 
         int index = jList.getSelectedIndex();
         if (index >= 0){
+            String item = listModel.getElementAt(index);
+            listModel.setElementAt("<html><strike>" + item + "</strike><html>", index);
             //jList.setSelectionBackground(Color.GREEN);
 
             completeTask();
@@ -192,3 +194,4 @@ public class mainCode {
         new mainCode();
     }
 }
+
