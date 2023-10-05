@@ -1,3 +1,4 @@
+import javax.swing.Box;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,15 +24,15 @@ public class mainCode {
     JFrame popUpFrame = new JFrame("ERROR");
     JPanel mainPanel = new JPanel();
     JLabel viewToDoHeader = new JLabel("Todays to-do");
-    JLabel viewActiveTasks = new JLabel();
-    JLabel viewCompleted = new JLabel("Completed tasks");
     int activeTasks = 0;
     int completedTasks = 0;
+    JLabel viewActiveTasks = new JLabel("Number of tasks: " + activeTasks);
+    JLabel viewCompleted = new JLabel("Completed tasks: " + completedTasks);
     Date date = new Date();
     SimpleDateFormat dFormat = new SimpleDateFormat("dd/MM-yy  |  HH:mm");
     String datePattern = dFormat.format(date);
     JLabel viewDate = new JLabel("" + datePattern);
-    JButton createTaskBtn = new JButton("+");
+    JButton createTaskBtn = new JButton("New Task");
     JButton markCompletedBtn = new JButton("Mark as completed");
     JButton deleteBtn = new JButton("Delete task");
     DefaultListModel<String> listModel = new DefaultListModel<>();
@@ -41,7 +42,10 @@ public class mainCode {
     JPanel panel1 = new JPanel();
     JPanel panel2 = new JPanel();
     JPanel panel3 = new JPanel();
-
+    JPanel panel4 = new JPanel();
+    JPanel panel5 = new JPanel();
+    JPanel panel6 = new JPanel();
+   
     public mainCode(){
       
         createTaskBtn.addActionListener(e ->{
@@ -67,46 +71,65 @@ public class mainCode {
         jList.setFixedCellWidth(100);
         jList.setBorder(new EmptyBorder(10,10, 10, 10));
         //jList.setBackground(Color.getHSBColor( 300,350,700));
-       
-        panel1.setBackground(Color.getHSBColor( 10,1000,700));
-        panel1.setPreferredSize(new Dimension(600, 100));
+
+        panel1.setLayout(new BorderLayout(20,20));
         mainFrame.add(panel1,BorderLayout.NORTH);
 
+        panel1.setBackground(Color.getHSBColor( 10,1000,700));
+        panel1.setPreferredSize(new Dimension(600, 80));
+
         panel2.setBackground(Color.getHSBColor( 10,1000,700));
-        panel2.setPreferredSize(new Dimension(600, 100));
+        panel2.setPreferredSize(new Dimension(600, 60));
         mainFrame.add(panel2,BorderLayout.SOUTH);
 
         panel3.setBackground(Color.getHSBColor( 10,1000,700));
-        panel3.setPreferredSize(new Dimension(100, 115));
-        panel1.add(panel3, BorderLayout.WEST);
+        panel3.setPreferredSize(new Dimension(10, 35));
+        panel1.add(panel3, BorderLayout.NORTH);
 
+        panel4.setBackground(Color.getHSBColor( 10,1000,700));
+        panel4.setPreferredSize(new Dimension(122, 35));
+        panel1.add(panel4, BorderLayout.WEST);
+
+        panel5.setBackground(Color.getHSBColor( 10,1000,700));
+        panel5.setPreferredSize(new Dimension(122, 50));
+        panel1.add(panel5, BorderLayout.EAST);
+
+        panel6.setLayout(new BorderLayout());
+        panel6.setBackground(Color.getHSBColor( 10,1000,700));
+        panel6.setPreferredSize(new Dimension(50, 100));
+        panel1.add(panel6, BorderLayout.CENTER);
         scrollPane.setPreferredSize(new Dimension(600, 600));
         mainFrame.add(scrollPane, BorderLayout.WEST);
-
+        
         viewToDoHeader.setFont(new Font("Georgia", Font.PLAIN, 20));
         viewToDoHeader.setPreferredSize(new Dimension(200, 150));
         viewToDoHeader.setForeground(Color.WHITE);
-        panel1.add(viewToDoHeader, BorderLayout.WEST);
-
+        panel6.add(viewToDoHeader, BorderLayout.CENTER);
+  
         viewDate.setForeground(Color.WHITE);
         viewDate.setFont(new Font("Georgia", Font.PLAIN, 15));
         viewDate.setPreferredSize(new Dimension(125, 150));
-        panel1.add(viewDate, BorderLayout.SOUTH);
+        panel6.add(viewDate, BorderLayout.EAST);
 
-        viewCompleted.setForeground(Color.WHITE);
-        viewCompleted.setFont(new Font("Georgia", Font.PLAIN, 10));
-        viewCompleted.setPreferredSize(new Dimension(100, 50));
-        panel1.add(viewCompleted, BorderLayout.EAST);
-
-        createTaskBtn.setPreferredSize(new Dimension(41,41));
-        panel3.add(createTaskBtn, BorderLayout.EAST);
+        viewActiveTasks.setForeground(Color.WHITE);
+        viewActiveTasks.setFont(new Font("Georgia", Font.BOLD, 10));
+        viewActiveTasks.setPreferredSize(new Dimension(120, 18));
+        panel4.add(viewActiveTasks, BorderLayout.CENTER);
         
-        markCompletedBtn.setPreferredSize(new Dimension(200,50));
+        viewCompleted.setForeground(Color.WHITE);
+        viewCompleted.setFont(new Font("Georgia", Font.BOLD, 10));
+        viewCompleted.setPreferredSize(new Dimension(120, 18));
+        panel5.add(viewCompleted, BorderLayout.CENTER);
+
+        createTaskBtn.setPreferredSize(new Dimension(90,20));
+        panel3.add(createTaskBtn, BorderLayout.SOUTH);
+
+        markCompletedBtn.setPreferredSize(new Dimension(145,50));
         panel2.add(markCompletedBtn, BorderLayout. WEST);
         
-        deleteBtn.setPreferredSize(new Dimension(200,50));
+        deleteBtn.setPreferredSize(new Dimension(145,50));
         panel2.add(deleteBtn, BorderLayout.EAST);
-        
+
         mainFrame.setSize(600,800);
         mainFrame.setResizable(false);
         mainFrame.add(mainPanel);
@@ -159,7 +182,9 @@ public class mainCode {
         int index = jList.getSelectedIndex();
         if (index >= 0){
             listModel.remove(index);
-            completeTask();
+
+            deletedTask();
+            //completeTask();
         }
     }
 
@@ -174,14 +199,21 @@ public class mainCode {
                 frame2.inputTask.setText("");
                 frame2.inputTime.setText("");
                 frame2.secondFrame.setVisible(false);
+                activeTask();
             }
         }
+    }
+
+    public void deletedTask(){
+
+        activeTasks--;
+        viewActiveTasks.setText("Number of tasks: " + activeTasks);
     }
 
     public void activeTask(){
 
         activeTasks++;
-        viewActiveTasks.setText("Du har: " + activeTasks);
+        viewActiveTasks.setText("Number of tasks: " + activeTasks);
     }
 
     public void completeTask(){
@@ -194,4 +226,3 @@ public class mainCode {
         new mainCode();
     }
 }
-
