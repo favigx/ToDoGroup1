@@ -194,9 +194,18 @@ public class mainCode {
         if (insert.isBlank() || insertkl.isBlank()) {
             JOptionPane.showMessageDialog(popUpFrame, "You are trying to add a task with one of the text fields empty. Try again.", "ERROR!", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            if (!insertkl.matches("[0-9:]+")) {
+            if (!insertkl.matches("[0-9]{2}[:][0-9]{2}")/*&&!insert.matches("[a-öA-Ö]")*/) {
                 JOptionPane.showMessageDialog(popUpFrame, "Please write a correct time input like shown in the example.", "ERROR!", JOptionPane.INFORMATION_MESSAGE);
-            } else {
+            } 
+            else if ((insert.length()>45)){
+
+                JOptionPane.showMessageDialog(popUpFrame, "Task input is too long.", "ERROR!", JOptionPane.INFORMATION_MESSAGE);
+            }
+                
+                
+
+                
+            else {
                 listModel.addElement(" " + insertkl + "  -  " + insert);
                 frame2.inputTask.setText("");
                 frame2.inputTime.setText("");
