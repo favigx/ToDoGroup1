@@ -126,6 +126,8 @@ public class mainCode {
 
         markCompletedBtn.setPreferredSize(new Dimension(145,50));
         panel2.add(markCompletedBtn, BorderLayout. WEST);
+
+        panel2.add(Box.createHorizontalStrut(50));
         
         deleteBtn.setPreferredSize(new Dimension(145,50));
         panel2.add(deleteBtn, BorderLayout.EAST);
