@@ -10,7 +10,6 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -49,7 +48,7 @@ public class mainCode {
     public mainCode(){
       
         createTaskBtn.addActionListener(e ->{
-            createTask(frame2.inputTask.getText());
+            createTask();
         });
         
         markCompletedBtn.addActionListener(e ->{
@@ -70,7 +69,6 @@ public class mainCode {
         jList.setFixedCellHeight(50);
         jList.setFixedCellWidth(100);
         jList.setBorder(new EmptyBorder(10,10, 10, 10));
-        //jList.setBackground(Color.getHSBColor( 300,350,700));
 
         panel1.setLayout(new BorderLayout(20,20));
         mainFrame.add(panel1,BorderLayout.NORTH);
@@ -140,7 +138,7 @@ public class mainCode {
         mainFrame.setVisible(true);  
     }
 
-    public void createTask(String insert){
+    public void createTask(){
 
         frame2.secondPanel.setLayout(new GridLayout(3, 1));
         frame2.secondPanel.setBackground(Color.getHSBColor( 10,1000,700));
@@ -173,9 +171,7 @@ public class mainCode {
         if (index >= 0){
             String item = listModel.getElementAt(index);
             listModel.setElementAt("<html><strike>" + item + "</strike><html>", index);
-            //jList.setSelectionBackground(Color.GREEN);
 
-            completeTask();
         }
     }
     
@@ -186,7 +182,7 @@ public class mainCode {
             listModel.remove(index);
 
             deletedTask();
-            //completeTask();
+            completeTask();
         }
     }
 
@@ -194,7 +190,7 @@ public class mainCode {
         if (insert.isBlank() || insertkl.isBlank()) {
             JOptionPane.showMessageDialog(popUpFrame, "You are trying to add a task with one of the text fields empty. Try again.", "ERROR!", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            if (!insertkl.matches("[0-9]{2}[:][0-9]{2}")/*&&!insert.matches("[a-öA-Ö]")*/) {
+            if (!insertkl.matches("[0-9]{2}[:][0-9]{2}")) {
                 JOptionPane.showMessageDialog(popUpFrame, "Please write a correct time input like shown in the example.", "ERROR!", JOptionPane.INFORMATION_MESSAGE);
             } 
             else if ((insert.length()>45)){
